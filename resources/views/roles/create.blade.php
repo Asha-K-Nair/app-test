@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
-                <h2>Create New Product
+                <h2>Create New Role
                     <div class="float-end">
-                        <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
                     </div>
                 </h2>
             </div>
@@ -24,28 +24,28 @@
         </div>
     @endif
 
-    <form action="{{ route('products.store') }}" method="POST">
+    <form action="{{ route('roles.store') }}" method="POST">
         @csrf
         <div class="row">
-            <div class="col-xs-12 mb-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
                     <input type="text" name="name" class="form-control" placeholder="Name">
                 </div>
             </div>
-            <div class="col-xs-12 mb-3">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Detail:</strong>
-                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+                    <strong>Permission:</strong>
+                    <br />
+                    @foreach ($permission as $value)
+                        <label>
+                            <input type="checkbox" name="permission[]" value="{{ $value->id }}" class="name">
+                            {{ $value->name }}</label>
+                        <br />
+                    @endforeach
                 </div>
             </div>
-            <div class="col-xs-12 mb-3">
-                <div class="form-group">
-                    <strong>Price</strong>
-                    <input type="text" name="price" class="form-control" placeholder="Price">
-                </div>
-            </div>
-            <div class="col-xs-12 mb-3 text-center">
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>

@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -18,10 +17,14 @@ class DatabaseSeeder extends Seeder
      * List of applications to add.
      */
     private $permissions = [
-        'vendor-list',
-        'vendor-create',
-        'vendor-edit',
-        'vendor-delete',
+        'role-list',
+        'role-create',
+        'role-edit',
+        'role-delete',
+        'user-list',
+        'user-create',
+        'user-edit',
+        'user-delete',
         'product-list',
         'product-create',
         'product-edit',
@@ -60,15 +63,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password-customer')
         ]);
 
-        $product = Product::create([
-            'product_name' => 'Shirt',
-            'description' => 'Full sleeve',
-            'price' => '1200'
-        ]);
-
-
-
-
+    
         $roleAdmin = Role::create(['name' => 'Admin']);
         $roleVendor = Role::create(['name' => 'Vendor']);
         $roleCustomer = Role::create(['name'=>'Customer']);
@@ -90,5 +85,7 @@ class DatabaseSeeder extends Seeder
         $userAdmin->assignRole([$roleAdmin->id]);
         $userVendor->assignRole([$roleVendor->id]);
         $userCustomer->assignRole([$roleCustomer->id]);
+
+        $this->call(ProductTableSeeder::class);
     }
 }

@@ -24,6 +24,7 @@
 
 <table class="table table-bordered table-hover table-striped">
  <tr>
+    <th>#</th>
    <th>Name</th>
    <th>Email</th>
    <th>Roles</th>
@@ -31,6 +32,7 @@
  </tr>
  @foreach ($data as $key => $user)
   <tr>
+    <td> {{$loop->iteration }}</td>
     <td>{{ $user->name }}</td>
     <td>{{ $user->email }}</td>
     <td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductController extends Controller
@@ -26,11 +27,16 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $products = Product::latest()->paginate(50); ;
+    {  
+        $id = Auth::user()->id;
+        $products = Product::where('user_id',$id)->latest()->paginate(50); ;
         return view('products.index', compact('products'));
     }
-
+    public function allProducts()
+    {  
+        $products = Product::latest()->paginate(50); ;
+        return view('dashboard', compact('products'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,17 +56,23 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'product_name' => 'required',
-            'description' => 'required',
-            'price'=>'required',
+            'name' => 'required',
+            'detail' => 'required',
+            'price'=> 'required|integer|min:0',
         ]);
 
 
-        Product::create($request->all());
+        Product::create([
+            'product_name'=>$request->name,
+            'description'=>$request->detail,
+            'price'=>$request->price,
+            'user_id'=>Auth::user()->id
+        ]);
 
         return redirect()->route('products.index')
             ->with('success', 'Product created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -94,8 +106,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         request()->validate([
-            'product_name' => 'required',
-            'description' => 'required',
+            'name' => 'required',
+            'detail' => 'required',
             'price'=>'required',
         ]);
 

@@ -24,14 +24,16 @@
 
     <table class="table table-striped table-hover">
         <tr>
+            <th>#</th>
             <th>Name</th>
             <th>Prize</th>
             <th width="280px">Action</th>
         </tr>
-     @foreach ($products as $product)
+     @foreach ($products as $product) 
      <tr>
+         <td> {{$loop->iteration }}</td>
          <td>{{ $product->product_name }}</td>
-         <td>Rs.{{ $product->prize }}</td>
+         <td>Rs.{{ $product->price }}</td>
          <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>

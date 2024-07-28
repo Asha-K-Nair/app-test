@@ -7,6 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>eKART</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -29,18 +31,24 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ ('Login') }} </a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ ('Register') }}</a></li>
                         @else
-                        @can('vendor-create')
+                        @can('user-create')
                             <li><a class="nav-link" href="{{ route('users.index') }}">Vendors</a></li>
                         @endcan
                         @can('product-create')    
-                            <li><a class="nav-link" href="{{ route('products.index') }}">Products</a></li>
-                        @endcan    
+                            <li><a class="nav-link" href="{{ route('products.index') }}">My Products</a></li>
+                        @endcan 
+                        @if ( auth()->user()->hasRole('Customer') )    
+                            <li><a class="nav-link" href="{{ route('viewcart') }}">My Cart</a></li>
+                        @endif   
                             <li class="ms-3 nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        {{ ('Profile') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

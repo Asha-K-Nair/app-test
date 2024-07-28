@@ -30,8 +30,8 @@
         </div>
         <div class="col-xs-12 mb-3">
             <div class="form-group">
-                <strong>Prize</strong>
-                {{ $product->prize }}
+                <strong>Price</strong>
+                {{ $product->price }}
             </div>
         </div>
         <div class="col-xs-12 mb-3">

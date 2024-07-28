@@ -14,14 +14,16 @@ class UserController extends Controller
 {
     function __construct()
     {
-        $this->middleware(['permission:vendor-list|vendor-create|vendor-edit|vendor-delete'], ['only' => ['index', 'show']]);
-        $this->middleware(['permission:vendor-create'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:vendor-edit'], ['only' => ['edit', 'update']]);
-        $this->middleware(['permission:vendor-delete'], ['only' => ['destroy']]);
+        $this->middleware(['permission:user-list|user-create|user-edit|user-delete'], ['only' => ['index', 'show']]);
+        $this->middleware(['permission:user-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:user-edit'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:user-delete'], ['only' => ['destroy']]);
     }
     public function index(Request $request)
     {
-        $data = User::latest()->paginate(5);
+        $data =User::with("roles")->whereHas("roles", function($q) {
+            $q->whereIn("name", ["Vendor"]);
+        })->get();
         return view('users.index',compact('data'));
     }
 
