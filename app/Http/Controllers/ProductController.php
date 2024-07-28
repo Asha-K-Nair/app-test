@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class ProductController extends Controller
@@ -60,12 +62,22 @@ class ProductController extends Controller
             'detail' => 'required',
             'price'=> 'required|integer|min:0',
         ]);
-
+        
+        if($request->hasFile('image')) {
+            //dd($request->image);
+            $extension = $request->image->extension();
+            $fileName = 'prod_pic'.time().'.'.$extension;
+            $request->image->storeAs('images',$fileName);
+        }
+        else {
+            $fileName ="";
+        }
 
         Product::create([
             'product_name'=>$request->name,
             'description'=>$request->detail,
             'price'=>$request->price,
+            'image'=>$fileName,
             'user_id'=>Auth::user()->id
         ]);
 

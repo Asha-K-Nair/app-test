@@ -46,7 +46,13 @@
             <div class="col-xs-12 mb-3">
                 <div class="form-group">
                     <strong>Price</strong>
-                    <input type="text" name="price" class="form-control" placeholder="Price">
+                    <input type="text" name="price" class="form-control" placeholder="Price" value="{{ $product->price }}">
+                </div>
+            </div>
+            <div class="col-xs-12 mb-3">
+                <div class="form-group">
+                    <strong>Image</strong>
+                    <input type="file" name="image" class="form-control"  value="{{ $product->image }}">
                 </div>
             </div>
             <div class="col-xs-12 mb-3 text-center">

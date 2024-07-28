@@ -21,7 +21,11 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card my-2 shadow-0">
             <a href="#" class="">
-                <img src="{{asset('/images/download.png')}}" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1">
+                @if($product->image != "")
+                <img src="{{asset('storage/'.$product->image)}}" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1">
+                @else
+                <img src="{{asset('images/download.png')}}" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1">
+                @endif
             </a>
             <div class="card-body p-0 pt-2">
                 <h5 class="card-title">{{ $product->product_name }}</h5>

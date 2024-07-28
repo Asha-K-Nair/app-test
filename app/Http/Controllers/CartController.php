@@ -30,9 +30,6 @@ class CartController extends Controller
         $id = Auth::user()->id;
         $cartProducts = Cart::with('products')->where('user_id',$id)->get() ;
        // dd($cartProducts);
-        foreach ($cartProducts as $item) {
-            dd($item->products);
-        }
-        return view('cart.index', compact('data'));
+        return view('cart.index', compact('cartProducts'));
     }
 }

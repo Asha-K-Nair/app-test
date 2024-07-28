@@ -36,8 +36,14 @@
         </div>
         <div class="col-xs-12 mb-3">
             <div class="form-group">
+                <strong>Product Image</strong>
+                <img src="{{asset('storage/'.$product->image)}}" class="card-img-top rounded-2" style="aspect-ratio: 1 / 1;width:200px;height:200px;">
+            </div>
+        </div>
+        <div class="col-xs-12 mb-3">
+            <div class="form-group">
             <strong>Stock</strong>
-            {{ $product->prize }}
+           
               
                     @can('stock-create')
                     <a class="btn btn-primary" href="{{ route('stock.create',$product->id) }}">Add stock</a>

@@ -14,9 +14,10 @@
             <th width="280px">Price</th>
             <th>Action</td>
         </tr>
-     @foreach ($data as $product) 
-     <tr>
-         <td>{{ $product->product()->product_name }}</td>
+      @foreach ($cartProducts as $products) 
+        @foreach($products as $product)
+       <tr>
+         <td>{{ $product->product_name }}</td>
          <td> {{$product->description }}</td>
          <td>Rs.{{ $product->price }}</td>
          <td><a class="btn btn-primary" href="{{ route('products.show',$product->id) }}">View Product</a>
@@ -26,8 +27,9 @@
         <input type="hidden" name="productId" class="form-control" value="{{$product->id}}">
          <button type="submit" class="btn btn-danger">Remove</button></td>
         @endif
-     </tr>
-     @endforeach
+        </tr>
+        @endforeach
+      @endforeach
     </table>
 
 @endsection    
