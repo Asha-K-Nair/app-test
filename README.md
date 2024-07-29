@@ -10,44 +10,51 @@
 ## About the task
 
 Backend:
-Create three types of user roles use database Seeder
-1) Admin: Functionalities.
-a) Login
-b) Add/edit/delete Vendors
-c) Manage Products (Add/edit/delete)
-d) Manage Stock(Add/edit/delete)
-2) Vendor: Functionalities.
-a) Login
-b) Manage products (Vendor specific)
-c) Manage Stock
+    Create three types of user roles use database Seeder
+        1) Admin: Functionalities.
+            a) Login
+            b) Add/edit/delete Vendors
+            c) Manage Products (Add/edit/delete)
+            d) Manage Stock(Add/edit/delete)
+        2) Vendor: Functionalities.
+            a) Login
+            b) Manage products (Vendor specific)
+            c) Manage Stock
 Frontend:
-3) Customer: Functionalities.
-a) Register/Login
-b) Product List
-c) Add to cart and cart listing page
+        3) Customer: Functionalities.
+            a) Register/Login
+            b) Product List
+            c) Add to cart and cart listing page
 Note: Need responsive design. Technology : Laravel ,mysql
 
 
 ## Installation
 
-1. Run git clone 'link projer github'
-2. Run composer install
-3. Run cp .env.example .env or copy .env.example .env
-4. Run php artisan key:generate
-5. Run npm install $$ npm run dev
-6. Run php artisan migrate
-7. Run php artisan db:seed
-8. Run php artisan serve
+1. Clone the project
+2. Run the following commands
+
+        composer install
+        cp .env.example .env or copy .env.example .env
+        php artisan key:generate
+        npm install $$ npm run dev
+        php artisan migrate
+        php artisan db:seed
+        php artisan serve
 
 
 ## User Credentials
 
 1. Admin
+
    email: admin@example.com
    password: password-admin
+
 2. Vendor
+
    email: vendor@example.com
    password: password-vendor
+
 3. Customer
+
    email: customer@example.com
    password: password-customer
